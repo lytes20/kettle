@@ -1,4 +1,6 @@
-public class ConnectionPool {
+import java.io.Serializable;
+
+public class ConnectionPool implements Serializable {
     private static ConnectionPool pool;
 
     private Connection connection = new Connection();
@@ -21,5 +23,9 @@ public class ConnectionPool {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    protected Object readResolve(){
+        return getPool();
     }
 }
